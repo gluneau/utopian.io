@@ -2,6 +2,7 @@ import { calculateVoteValue } from '../vendor/steemitHelpers';
 
 export const getUserRank = (vests) => {
   let rank = 'Plankton';
+  vests = parseFloat(vests);
   if (vests >= 1000000000) {
     rank = 'Whale';
   } else if (vests >= 100000000) {
@@ -16,6 +17,7 @@ export const getUserRank = (vests) => {
 
 export const getUserRankKey = (vests) => {
   let rank = 'plankton';
+  vests = parseFloat(vests);
   if (vests >= 1000000000) {
     rank = 'whale';
   } else if (vests >= 100000000) {
@@ -35,11 +37,12 @@ parseFloat(user.received_vesting_shares) +
 
 export const getHasDefaultSlider = user => true;
 
-export const getVoteValue = (user, recentClaims, rewardBalance, weight = 10000) =>
+export const getVoteValue = (user, recentClaims, rewardBalance, currentMedianHistoryPrice, weight = 10000) =>
   calculateVoteValue(
     getTotalShares(user),
     parseFloat(recentClaims),
     parseFloat(rewardBalance),
+    currentMedianHistoryPrice,
     user.voting_power,
     weight,
   );

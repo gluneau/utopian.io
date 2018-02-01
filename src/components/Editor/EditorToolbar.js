@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
-import { Button, Tooltip, Menu, Dropdown, Icon } from 'antd';
+import { Button, Tooltip, Menu, Dropdown, Icon } from 'antd';  import * as ReactIcon from 'react-icons/lib/md';
 import './EditorToolbar.less';
 
 const tooltip = (description, shortcut) =>
@@ -55,6 +55,11 @@ const EditorToolbar = ({ intl, onSelect }) => {
       <Tooltip title={tooltip(intl.formatMessage({ id: 'image', defaultMessage: 'Add image' }), 'Ctrl+m')}>
         <Button className="EditorToolbar__button" onClick={() => onSelect('image')}>
           <i className="iconfont icon-picture" />
+        </Button>
+      </Tooltip>
+      <Tooltip title={tooltip(intl.formatMessage({ id: 'code', defaultMessage: 'Insert Code' }), 'Ctrl+n')}>
+        <Button className="EditorToolbar__button" onClick={() => onSelect('code')}>
+          <i className="iconfont icon-code" />
         </Button>
       </Tooltip>
     </div>

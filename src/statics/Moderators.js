@@ -4,7 +4,7 @@ import { getModerators } from '../actions/moderators';
 import { getStats } from '../actions/stats';
 import { Link } from 'react-router-dom';
 
-import { Icon } from 'antd';
+import { Icon } from 'antd'; import * as ReactIcon from 'react-icons/lib/md';
 import './Moderators.less';
 
 @connect(
@@ -66,20 +66,12 @@ class Moderators extends React.PureComponent {
                       <Link to={`/@${username}`}>
                         <img className="picture" src={picture} />
                         <b className="account">{username}</b>
+                        <small>{' '}{moderator.supermoderator === true ? '[supervisor]' : null}</small>
                       </Link>
                     </div>
                     <div className="statsTab">
-                      <h4>{Math.ceil((moderator.percentage_total_rewards_moderators || 0) * 100) / 100}%</h4>
-                      <p><b>Moderator Reward Shares</b></p>
-                    </div>
-                    <div className="statsTab">
-                      <h4>${Math.ceil((moderator.should_receive_rewards || 0) * 100) / 100}</h4>
-                      <p><b>Will Receive</b></p>
-                      <p style={{fontSize: '12px'}}><em>(Not including pending rewards. Will accumulate pending rewards once released)</em></p>
-                    </div>
-                    <div className="statsTab">
-                      <h4>${Math.ceil((moderator.total_paid_rewards || 0) * 100) / 100}</h4>
-                      <p><b>Rewards Received</b></p>
+                      <h4>{moderator.total_moderated || 0}</h4>
+                      <p><b>Total Reviewed</b></p>
                     </div>
                   </div>
                 )
